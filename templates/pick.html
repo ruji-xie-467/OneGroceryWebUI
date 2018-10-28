@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <title>Flask Intro - login page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/skeleton.css" rel="stylesheet" media="screen">
+    <link href="static/css/normalize.css" rel="stylesheet" media="screen">
+    <link href="static/css/style.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1 align="center" style="color: #777733; font-size: 60px">One Grocery</h1>
+      <form action="" method="post">
+          <div class="shopping-cart">
+        <!-- Title -->
+        <div class="title">
+          Shopping Bag
+        </div>
+        <!-- Product #1 -->
+        <div class="item">
+          <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+          </div>
+
+          <div class="image">
+            <img src="./static/css/strawberry.png" alt="" />
+          </div>
+
+          <div class="description">
+            <span style="display: inline-block; height: 100px; font-size: 20px">strawberry</span>
+
+          </div>
+
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+              +
+            </button>
+            <input type="text" name="name" value="0">
+            <button class="minus-btn" type="button" name="button">
+              -
+            </button>
+          </div>
+
+          <div class="total-price">$5</div>
+        </div>
+
+        <!-- Product #2 -->
+        <div class="item">
+          <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+          </div>
+
+          <div class="image">
+            <img src="./static/css/banana.png" alt=""/>
+          </div>
+
+          <div class="description">
+<span style="display: inline-block; height: 100px; font-size: 20px">Banana</span>
+          </div>
+
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+              +
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+              -
+            </button>
+          </div>
+
+          <div class="total-price">$1</div>
+        </div>
+
+        <!-- Product #3 -->
+        <div class="item">
+          <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+          </div>
+
+          <div class="image">
+            <img src="./static/css/peach.png" alt="" />
+          </div>
+
+          <div class="description">
+<span style="display: inline-block; height: 100px; font-size: 20px">Peach</span>
+          </div>
+
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button" id="peach-plus">
+             +
+            </button>
+            <input type="text" name="peach" value="{{ request.form.peach }}" id="peach-number">
+            <button class="minus-btn" type="button" name="button" id="peach-minus">
+              -
+            </button>
+          </div>
+
+          <div class="total-price">$2</div>
+        </div>
+    </div>
+    <div  align="center">
+        <input type="text" placeholder="Phone Number" name="phonenumber" value="{{
+          request.form.phonenumber }}" style="display: inline-block; margin-right: 20px">
+         <input type="text" placeholder="Zipcode" name="zipcode" value="{{
+          request.form.zipcode }}">
+    <div>
+    <div  align="center" style="margin: 20px">
+        <input class="btn btn-default" type="submit" value="Check Out">
+    </div>
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+    <script>
+        var num_jia = document.getElementById("peach-plus");
+        var num_jian = document.getElementById("peach-minus");
+        var input_num = document.getElementById("peach-number");
+
+        num_jia.onclick = function() {
+            if(isNaN(input_num.value) || input_num.value==""){
+                input_num.value = 0
+            }
+            else {
+                input_num.value = parseInt(input_num.value) + 1;
+            }
+        }
+
+        num_jian.onclick = function() {
+            if(input_num.value <= 0){
+                input_num.value = 0;
+            } else {
+                input_num.value = parseInt(input_num.value) - 1;
+            }
+
+        }
+    </script>
+  </body>
+</html>
